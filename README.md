@@ -50,6 +50,7 @@ docker-compose up --build
 
 The solution is by far not finished yet. The general structure is laid out, and adding endpints for the deposit and withdrawal functionality follows the same pattern. There was not logging added, which should be done in further iterations, and exception handling can be improved. Endpoints now deliver exceptions if something goes wrong, but returning result objects might be a better idea.
 
-[!NOTE]
+| :exclamation:  On security              |
+|-----------------------------------------|
 
 The JWT secret key was hard-coded in the solution. This should not be the case in a production scenario. Usually you would access such a secret via Azure KeyVault and the like.
