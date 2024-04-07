@@ -38,6 +38,21 @@ curl -X 'POST' \
 }'
 ```
 
+For the create account and delete account endpoint, you need to provide a jwt token in the request, which you can get from the register call:
+
+```
+curl -X 'POST' \
+  'http://localhost:5070/api/create-account' \
+  -H 'accept: */*' \
+  -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6InN0cmluZyIsInJvbGUiOiJ1c2VyIiwibmJmIjoxNzEyNTIwMTE1LCJleHAiOjE3MTI1MjE5MTUsImlhdCI6MTcxMjUyMDExNX0.26xZpRtLKnbPYhSIsvbsf2heDITni0zPrgHQ6n3YXHw' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "userId": "f4b2f041-0013-4459-a319-b22b2e65ab14",
+  "name": "string",
+  "initialBalance": 1000
+}'
+```
+
 ## Docker Support
 
 The project includes a Dockerfile and docker-compose.yml for building and running the application in a Docker container.
