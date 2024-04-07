@@ -1,4 +1,4 @@
-# Baking API
+# Banking API
 
 This project is a banking API built with .NET Core. It provides a set of endpoints for managing user accounts and performing transactions.
 
