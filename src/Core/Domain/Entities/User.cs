@@ -20,4 +20,10 @@ public class User(string userName, string password)
         var account = Account.Create(Id, name, initialBalance);
         Accounts.Add(account);
     }
+
+    public void DeleteAccount(string name)
+    {
+        var account = (Accounts?.FirstOrDefault(a => a.Name == name)) ?? throw new ArgumentException("Account with this name does not exist.");
+        Accounts.Remove(account);
+    }
 }

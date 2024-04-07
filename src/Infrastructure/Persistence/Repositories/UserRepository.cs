@@ -26,6 +26,24 @@ public class UserRepository(UserDbContext dbContext) : IUserRepository
         return user;
     }
 
+    public Task DeleteAccount(Guid userId, string accountName)
+    {
+        var user = _dbContext.Users.Include(u => u.Accounts).FirstOrDefault(u => u.Id == userId);
+        if (user is null)
+        {
+            return Task.CompletedTask;
+        }
+
+        var account = user.Accounts?.FirstOrDefault(a => a.Name == accountName);
+        if (account is null)
+        {
+            return Task.CompletedTask;
+        }
+
+        user.Accounts!.Remove(account);
+        return Task.CompletedTask;
+    }
+
     public Task<User?> GetById(Guid id)
     {
         return _dbContext.Users.Include(u => u.Accounts).FirstOrDefaultAsync(u => u.Id == id);

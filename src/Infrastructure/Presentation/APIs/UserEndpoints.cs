@@ -15,9 +15,20 @@ public static class UserEndpoints
     {
         app.MapPost("/api/register", RegisterUserAsync);
         app.MapPost("/api/create-account", CreateAccountAsync).RequireAuthorization("user");
+        app.MapDelete("/api/delete-account", DeleteAccountAsync).RequireAuthorization("user");
     }
 
-    private static async Task<Results<Ok, NotFound<string>>> CreateAccountAsync(
+    private static async Task<Ok> DeleteAccountAsync(
+        [FromBody] DeleteAccountCommand request,
+        [FromServices] IMediator mediator,
+        CancellationToken cancellationToken
+    )
+    {
+        await mediator.Send(request, cancellationToken);
+        return TypedResults.Ok();
+    }
+
+    private static async Task<Ok> CreateAccountAsync(
         [FromBody] CreateAccountCommand request,
         [FromServices] IMediator mediator,
         CancellationToken cancellationToken
