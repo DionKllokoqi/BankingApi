@@ -14,6 +14,8 @@ public class RegisterUserQueryHandler(IUserRepository userRepository, ITokenServ
 
         var token = tokenService.GenerateToken(user);
 
+        await userRepository.SaveChangesAsync();
+
         return new LoginDto(user.Id.ToString(), token);
     }
 }

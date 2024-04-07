@@ -9,7 +9,7 @@ namespace Domain.Tests
         public void Create_WhenInitialBalanceIsLessThan100_ShouldThrowArgumentException()
         {
             // Arrange & Act
-            Action act = () => Account.Create(Guid.NewGuid(), 99);
+            Action act = () => Account.Create(Guid.NewGuid(), "test", 99);
 
             // Assert
             act.Should().Throw<ArgumentException>();
@@ -24,7 +24,7 @@ namespace Domain.Tests
             var userId = Guid.NewGuid();
 
             // Act
-            var account = Account.Create(userId, initialBalance);
+            var account = Account.Create(userId, "test", initialBalance);
 
             // Assert
             account.UserId.Should().Be(userId);

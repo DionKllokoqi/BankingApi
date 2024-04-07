@@ -5,4 +5,7 @@ namespace Domain.Repositories;
 public interface IUserRepository
 {
     Task<User> Create(string username, string password);
+    Task<User?> GetById(Guid id);
+    Task AddAccount(Guid userId, Account account);
+    Task SaveChangesAsync();
 }
